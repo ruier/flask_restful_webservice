@@ -25,6 +25,8 @@ with open("./record.json",'r') as load_f:
 @app.route('/appname/module/rest/task', methods=['GET', 'POST'])
 def tasks():
     if request.method == 'POST':
+	json_data.append(request.json)
+	json_data[0].setdefault("tasks",[ ]).append(request.json['modid'])
         return jsonify({'task': 'ok'}), 201
     else:
         return jsonify(json_data[0])
